@@ -7,9 +7,9 @@ const getType = (element) => {
 
 export default class ShallowStateUpdate extends Store{
 
-  stateShouldUpdate(prevState, nextState) {
-    for(let key in prevState) {
-      if(prevState[key] !== nextState[key]) {
+  stateShouldUpdate(currentState, nextState) {
+    for(let key in currentState) {
+      if(currentState[key] !== nextState[key]) {
         return true
       }
     }

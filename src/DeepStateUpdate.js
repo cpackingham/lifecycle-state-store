@@ -29,7 +29,7 @@ const deepEquals = (a, b) => {
 }
 
 export default class DeepStateUpdate extends Store {
-  stateShouldUpdate(prevState, nextState) {
-    return !deepEquals(prevState, nextState)
+  stateShouldUpdate(currentState, nextState) {
+    return !deepEquals(currentState, nextState)
   }
 }
