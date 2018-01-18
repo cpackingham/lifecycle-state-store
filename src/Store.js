@@ -43,13 +43,15 @@ export default class Store {
    */
 
   dispatch(action) {
-    const currentState = this.state
+    let currentState = this.state
     const nextState = this.reducer(currentState, action)
     if (!this.stateShouldUpdate(currentState, nextState)) {
       return action
     }
     this.stateWillUpdate(currentState, nextState)
     this.state = Object.assign({}, currentState, nextState)
+    const prevState = currentState
+    currentState = this.state
     this.stateDidUpdate(prevState, currentState)
     return action
   }
