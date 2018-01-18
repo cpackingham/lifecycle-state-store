@@ -7,8 +7,6 @@ export default class Store {
     this.state = initialState
     this.dispatch = this.dispatch.bind(this)
     this.getState = this.getState.bind(this)
-    this.setStateSafe = this.setStateSafe.bind(this) 
-    this.setStateDirect = this.setStateDirect.bind(this)
     this.stateShouldUpdate = this.stateShouldUpdate.bind(this)
     this.stateWillUpdate = this.stateWillUpdate.bind(this)
     this.stateDidUpdate = this.stateDidUpdate.bind(this)
@@ -21,34 +19,20 @@ export default class Store {
   */
 
   dispatch(action) {
-    const updatedState = this.reducer(this.getState(), action)
 
-    if(!this.stateShouldUpdate()) {
+    const prevState = this.state 
+    const nextState = this.reducer(prevState, action)
+    if(!this.stateShouldUpdate(prevState, nextState)) {
       return null
     }
+    this.stateWillUpdate(prevState, nextState)
+    this.state = nextState
+    this.stateDidUpdate(prevState, nextState)
 
-    this.stateWillUpdate()
-
-    this.state = updatedState
-
-    this.stateDidUpdate()
   }
 
   getState() {
     return this.state
-  }
-
-  setStateSafe(newState) {
-    if(!this.stateShouldUpdate()) {
-      return false
-    }
-    this.stateWillUpdate()
-    this.setStateDirect(newState)
-    this.stateDidUpdate()
-  }
-
-  setStateDirect(newState) {
-    this.state = newState
   }
 
   /* 
@@ -67,16 +51,16 @@ export default class Store {
     State lifecycle methods
   */
 
-  stateDidUpdate() {
-
-  }
-
-  stateWillUpdate() {
-
-  }
-
-  stateShouldUpdate() {
+  stateShouldUpdate(prevState, nextState) {
     return true
+  }
+
+  stateWillUpdate(prevState, nextState) {
+
+  }
+
+  stateDidUpdate(prevState, nextState) {
+
   }
 
 }

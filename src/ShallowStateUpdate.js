@@ -1,45 +1,19 @@
-function getType(element) {
+import Store from './Store'
+
+const getType = (element) => {
   return Object.prototype.toString.call(elem)
 }
 
-export default class ShallowStateUpdate {
-  constructor(prevState, updatedState, changedFields) {
-    this.prevState = prevState
-    this.updatedState = updatedState
-    this.changedFields = changedFields
-    this.hasChanged = this.hasChanged.bind(this)
-    this.hasChangedTypes = this.hasChangedTypes.bind(this)
-    this.getUpdatedState = this.getUpdatedState.bind(this)
-    this.getPrevState = this.getPrevState.bind(this)
-    this.getChangedFields = this.getChangedFields.bind(this)
-  }
 
-  hasChanged() {
-    this.changedFields.length !== 0 ? true : false
-  }
+export default class ShallowStateUpdate extends Store{
 
-  hasChangedTypes() {
-    let changedFields = this.getChangedFields()
-    let updatedState = this.getUpdatedState()
-    let prevState = this.getPrevState()
-    for(let key in changedFields) {
-      if(getType(updatedState[key]) !== getType(prevState[key])) {
+  stateShouldUpdate(prevState, nextState) {
+    for(let key in prevState) {
+      if(prevState[key] !== nextState[key]) {
         return true
       }
     }
     return false
-  }
-
-  getUpdatedState() {
-    return this.updatedState
-  }
-
-  getPrevState() {
-    return this.prevState
-  }
-
-  getChangedFields() {
-    return this.changedFields
   }
 
 }
