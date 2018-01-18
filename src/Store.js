@@ -17,6 +17,7 @@ export default class Store {
     this.storeWillInitialize()
     this.reducer = reducer
     this.state = initialState
+    this.listeners = []
     this.dispatch = this.dispatch.bind(this)
     this.getState = this.getState.bind(this)
     this.stateShouldUpdate = this.stateShouldUpdate.bind(this)
@@ -61,8 +62,20 @@ export default class Store {
    * 
    * @returns {Object} Returns the state.
    */
+
   getState() {
     return this.state
+  }
+
+  /**
+   * Adds a listener to be called after state is updated.
+   * 
+   * @param {Function} listener A function to be called when 
+   * state updates. 
+   */
+
+  subscribe(listener) {
+    this.listeners.push(listener)
   }
 
   /**
@@ -121,7 +134,7 @@ export default class Store {
 
   /**
    * Called after state is updated. This method is intended to be extended by
-   * implementations of Store.
+   * implementations of Store. By default calls all listener methods.
    * 
    * @param {Object} prevState The previous state of the application.
    * 
@@ -129,7 +142,11 @@ export default class Store {
    * 
    */
   stateDidUpdate(prevState, currentState) {
-
+    const listeners = this.listeners
+    console.log(listeners)
+    listeners.forEach(listener => {
+      listener()
+    })
   }
 
 }
