@@ -22,15 +22,11 @@ export default class Store {
 
     const prevState = this.state 
     const nextState = this.reducer(prevState, action)
-    
     if(!this.stateShouldUpdate(prevState, nextState)) {
       return null
     }
-
     this.stateWillUpdate(prevState, nextState)
-
     this.state = nextState
-
     this.stateDidUpdate(prevState, nextState)
 
   }
