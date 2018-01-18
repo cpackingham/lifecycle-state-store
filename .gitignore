@@ -1,0 +1,23 @@
+# Add files and directories for git to ignore here.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.vscode
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+
+.idea
+
+package-lock.json
