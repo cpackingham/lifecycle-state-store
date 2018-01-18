@@ -1,10 +1,10 @@
-export const reducer = (state, action) => {
+export default (state, action) => {
   switch (action.type) {
-    case 'INCREMENT': 
+    case 'INCREMENT':
       return Object.assign({}, state, {count: state.count + 1})
-    case 'DECREMENT': 
+    case 'DECREMENT':
       return Object.assign({}, state, {count: state.count - 1})
-    default: 
+    default:
       return state
   }
 }
