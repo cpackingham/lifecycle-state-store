@@ -9,5 +9,8 @@ export function genericReducer(state, action) {
     case "HELLO":
       updatedState = Object.assign({}, state, { actionType: action.type })
       return updatedState
+    default: 
+      updatedState = Object.assign({}, state, { actionType: action.type })
+      return updatedState
   }
 }

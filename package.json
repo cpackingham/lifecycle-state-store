@@ -6,7 +6,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "jest": "^22.1.2"
+    "jest": "^22.1.2",
+    "sinon": "^4.1.6"
   },
   "jest": {
     "testRegex": "(/test/.*\\.spec.js)$"

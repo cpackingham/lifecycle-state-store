@@ -9,7 +9,7 @@ describe('createStore', () => {
     const store = new Store(genericReducer, simpleState)
     const methods = Object.keys(store)
 
-    expect(methods.length).toEqual(11)
+    expect(methods.length).toEqual(9)
 
   })
 
