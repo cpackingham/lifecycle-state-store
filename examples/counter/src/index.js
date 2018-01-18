@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Counter from './components/Counter'
 import './index.css';
-import App from './App';
+import {Store} from 'lifecycle-state-store'
+import {reducer} from './reducers/index'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = new Store(reducer, {count: 0})
+
+ReactDOM.render(
+<Counter 
+  value={store.getState().count}
+  onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
+  onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
+/>, document.getElementById('root'));
 

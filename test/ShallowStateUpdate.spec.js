@@ -9,7 +9,7 @@ describe('shallow state update object', () => {
   it('should create a new store with public API available', () => {
     const store = new ShallowStateUpdate(genericReducer, simpleState)
     const methods = Object.keys(store)
-    expect(methods.length).toEqual(9)
+    expect(methods.length).toEqual(10)
   })
 
   it('should update state given valid transformation', () => {
