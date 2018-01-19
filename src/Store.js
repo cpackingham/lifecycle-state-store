@@ -143,7 +143,6 @@ export default class Store {
    */
   stateDidUpdate(prevState, currentState) {
     const listeners = this.listeners
-    console.log(listeners)
     listeners.forEach(listener => {
       listener()
     })
